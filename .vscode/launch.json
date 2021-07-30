@@ -12,9 +12,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "/Users/daniel/Documents/Code/Watchy/.pio/build/esp32dev/firmware.elf",
+            "executable": "/Users/colintindle/code/underscoredotspace/watchy-marina/.pio/build/esp32dev/firmware.elf",
             "projectEnvName": "esp32dev",
-            "toolchainBinDir": "/Users/daniel/.platformio/packages/toolchain-xtensa32/bin",
+            "toolchainBinDir": "/Users/colintindle/.platformio/packages/toolchain-xtensa32/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -25,9 +25,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "/Users/daniel/Documents/Code/Watchy/.pio/build/esp32dev/firmware.elf",
+            "executable": "/Users/colintindle/code/underscoredotspace/watchy-marina/.pio/build/esp32dev/firmware.elf",
             "projectEnvName": "esp32dev",
-            "toolchainBinDir": "/Users/daniel/.platformio/packages/toolchain-xtensa32/bin",
+            "toolchainBinDir": "/Users/colintindle/.platformio/packages/toolchain-xtensa32/bin",
             "internalConsoleOptions": "openOnSessionStart"
         }
     ]
