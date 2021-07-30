@@ -15,8 +15,11 @@ class WatchFace : public Watchy {
       WiFi.mode(WIFI_OFF);
       btStop();
    
-      if(currentTime.Hour == 0 && currentTime.Minute == 0) {
-        sensor.resetStepCounter(); 
+      if(currentTime.Minute == 0) {
+        if (currentTime.Hour == 0) {
+          sensor.resetStepCounter(); 
+        }
+        
         vibMotor(100, 2);
         delay(50);
         vibMotor(100, 2);
