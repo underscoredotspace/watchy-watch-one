@@ -2,7 +2,15 @@
 #include <Watchy.h>
 #include "OverpassMono_Bold12pt7b.h"
 #include "OverpassMono_Bold50pt7b.h"
-				
+#include <ctype.h>
+
+void clamp(float *number, float min, float max) {
+  if (*number < min) {
+    *number = min;
+  } else if (*number > max) {
+    *number = max;
+  }
+}				
 
 class WatchFace : public Watchy {
   public:
@@ -17,12 +25,15 @@ class WatchFace : public Watchy {
    
       if(currentTime.Minute == 0) {
         if (currentTime.Hour == 0) {
+          
           sensor.resetStepCounter(); 
         }
-        
-        vibMotor(100, 2);
-        delay(50);
-        vibMotor(100, 2);
+
+        if (currentTime.Hour > 7 && currentTime.Hour < 23) {
+          vibMotor(100, 2);
+          delay(50);
+          vibMotor(100, 2);
+        }
       }
       
       display.setTextColor(GxEPD_BLACK);
@@ -49,16 +60,17 @@ class WatchFace : public Watchy {
 
       display.setFont(&OverpassMono_Bold12pt7b);
 
-      const float MAX_BATT = 4.23;
-      const float MIN_BATT =  3.3;
+      const float MAX_BATT = 4;
+      const float MIN_BATT =  3.5;
 
       float batt = getBatteryVoltage();
       float batt_percentage = ((batt - MIN_BATT) * 100) / (MAX_BATT - MIN_BATT);
+      clamp(&batt_percentage, 0, 100);
 
       display.setCursor(1, 17);
-      display.printf("%0.0f%%\n", batt_percentage);
+      display.printf("%0.0f%%", batt_percentage);
       display.setCursor(1, 36);
-      display.print(batt);
+      display.printf("%0.0fv", batt);
 
       textstring = dayShortStr(currentTime.Wday);
       textstring += " ";
@@ -67,7 +79,8 @@ class WatchFace : public Watchy {
       textstring += monthShortStr(currentTime.Month);
 
       display.getTextBounds(textstring, 0, 0, &x1, &y1, &w, &h);
-      display.setCursor(1, 199);
+      display.setCursor((200 - w) / 2, 199);
+      textstring.toUpperCase();
       display.print(textstring);
     }
 };
